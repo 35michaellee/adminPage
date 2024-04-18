@@ -3,13 +3,7 @@ import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 
 
 
-import {
-  ErrorComponent,
-  Header,
-  ThemedLayoutV2,
-  ThemedSiderV2,
-  useNotificationProvider,
-} from "@refinedev/antd";
+
 import "@refinedev/antd/dist/reset.css";
 
 
@@ -40,9 +34,10 @@ import {
   CategoryShow,
 } from "./pages/categories";
 
-
+import Layout from "./components/layout"
 
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
+import { resources } from "./config/resources";
 // import { liveProvider } from "@refinedev/nestjs-query";
 //npm install --save-dev @graphql-codegen/typescript @graphql-codegen/typescript-operations @graphql-codegen/import-types-preset prettier vite-tsconfig-path
 
@@ -59,10 +54,10 @@ function App() {
               <Refine
                 dataProvider={dataProvider}
                 liveProvider={liveProvider}
-                notificationProvider={useNotificationProvider}
+               //notificationProvider={useNotificationProvider}
                 routerProvider={routerBindings}
                 authProvider={authProvider}
-                // resources={[
+                 resources={resources}
                 //   {
                 //     name: "blog_posts",
                 //     list: "/blog-posts",
@@ -92,15 +87,26 @@ function App() {
                   liveMode: "auto",
                 }}
               >
-                <Routes>
-                  <Route index element ={<WelcomePage/>}></Route>
-                  <Route index element ={<Home/>}></Route>
-                  <Route path="/register" element={<Register/>}></Route>
-                  <Route path="/login" element={<Login/>}></Route>
-                  <Route  path="/forgot-password" element={<ForgotPassword/>}></Route>
-                 
-                  
-                </Routes>
+              
+              <Routes>
+         
+               
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route element={
+                    <Authenticated
+                      key="authenticated-layout"
+                      fallback={<CatchAllNavigate to="/forgot-password" />}
+                    >
+                    <Layout>
+                      <Outlet />
+                    </Layout>
+                  </Authenticated>
+                } >
+                   <Route index element={<Home />} />
+                  </Route>
+              </Routes>
 
                 
                 <UnsavedChangesNotifier />
