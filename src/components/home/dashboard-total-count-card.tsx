@@ -11,47 +11,46 @@ type Props = {
 const DashboardTotalCountCard = ({resource, isLoading,totalCount}:Props) => {
   const {primaryColor,secondaryColor,icon,title,data} = totalCountVariants[resource]
 
-  const config: AreaConfig = { 
-    data : totalCountVariants[resource].data,
+  const config: AreaConfig = {
+    data: totalCountVariants[resource].data,
     xField: 'index',
     yField: 'value',
-    appendPadding: [1,0,0,0],
+    appendPadding: [1, 0, 0, 0], // Adjust the padding values as needed
     padding: 0,
     syncViewPadding: true,
     autoFit: true,
     tooltip: false,
-    xAxis:false,
-    yAxis:{
-      tickCount:12,
-      label:{
-        style:{
+    xAxis: false,
+    yAxis: {
+      tickCount: 12,
+      label: {
+        style: {
           stroke: "transparent"
         }
       },
-    grid:{
-      line:{
-        style:{
-          stroke: "transparent"
+      grid: {
+        line: {
+          style: {
+            stroke: "transparent"
+          }
         }
       }
+    },
+    smooth: true,
+    line: {
+      color: primaryColor,
+    },
+    areaStyle: () => {
+      return {
+        fill: `l(270) 0:#fff 0.2 ${secondaryColor} 1:${primaryColor}`
+      }
     }
-  }, smooth: true,
-  line: {
-   color: primaryColor,
-  },
-  areaStyle: ()=>{
-    return {
-      fill:`l(270) 0:#fff 0.2 ${secondaryColor} 1:${primaryColor}`
-    }
-  }
-    
-
-   }
+  };
    console.log("config",config)
   
    return (
     <Card
-      style={{ height: "96px", padding: 0 }}
+      style={{ height: "100px", padding: 0 ,overflow: "hidden"}}
       bodyStyle={{
         padding: "8px 8px 8px 12px",
       }}
@@ -61,8 +60,9 @@ const DashboardTotalCountCard = ({resource, isLoading,totalCount}:Props) => {
         style={{
           display: "flex",
           alignItems: "center",
-          gap: "8px",
+          gap: "10px",
           whiteSpace: "nowrap",
+          
         }}
       >
         {icon}
@@ -74,7 +74,7 @@ const DashboardTotalCountCard = ({resource, isLoading,totalCount}:Props) => {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          
+            
         }}
       >
         <Text
@@ -84,6 +84,7 @@ const DashboardTotalCountCard = ({resource, isLoading,totalCount}:Props) => {
             textAlign: "start",
             marginLeft: "48px",
             fontVariantNumeric: "tabular-nums",
+            width:"20%"
           }}
         >
           {isLoading ? (
@@ -98,7 +99,7 @@ const DashboardTotalCountCard = ({resource, isLoading,totalCount}:Props) => {
           )}
         </Text>
       
-          <Area {...config} />
+          <Area style={{ maxHeight: "100%" ,width:"60%"}}{...config} />
        
       </div>
     </Card>

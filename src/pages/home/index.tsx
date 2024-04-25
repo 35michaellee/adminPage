@@ -1,5 +1,5 @@
 import { Row, Col } from "antd"
-import {UpcomingEvents,DealsChart,DashboardTotalCountCard} from "@/components"
+import {UpcomingEvents,DealsChart,DashboardTotalCountCard,DashBoardLatestActivities} from "@/components"
 import { useCustom } from "@refinedev/core"
 import { DashboardTotalCountsQuery } from "@/graphql/types"
 import { DASHBOARD_TOTAL_COUNTS_QUERY } from "@/graphql/queries"
@@ -18,7 +18,6 @@ export const Home = () => {
             <Row gutter={[32,32]} >
                 <Col xs={24} sm={24} xl={8} >
                     <DashboardTotalCountCard
-                     dealStageFilter
                         resource={"companies"}
                         isLoading={isLoading}
                         totalCount={
@@ -44,9 +43,13 @@ export const Home = () => {
             
             </Row>
             <Row gutter={[32,32]} style={{ marginTop:"32px"}}>
-
                 <Col xs={24} sm={24} xl={8} style={{height:"460px"}}><UpcomingEvents></UpcomingEvents></Col>
                 <Col xs={24} sm={24} xl={16} style={{height:"460px"}}><DealsChart></DealsChart></Col>
+            </Row>
+            <Row gutter={[32,32]} style ={{ marginTop:"32px"}}>
+                <Col xs={24} >
+                   <DashBoardLatestActivities></DashBoardLatestActivities>
+                </Col>
             </Row>
         </div>
     
