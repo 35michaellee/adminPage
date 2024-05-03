@@ -8,7 +8,7 @@ import "@refinedev/antd/dist/reset.css";
 
 
 import {dataProvider,liveProvider,authProvider} from "./Providers";
-import {Home,Login,Register,ForgotPassword} from './pages'
+import {Home,Login,Register,ForgotPassword,CompanyList} from './pages'
 
 
 import routerBindings, {
@@ -105,6 +105,7 @@ function App() {
                   </Authenticated>
                 } >
                    <Route index element={<Home />} />
+                   <Route path="/companies" element={<CompanyList/>} />
                   </Route>
               </Routes>
 

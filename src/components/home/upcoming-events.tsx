@@ -22,6 +22,7 @@ export const UpcomingEvents = () => {
       gqlQuery:DASHBOARD_CALENDER_UPCOMING_EVENTS_QUERY
     }
 })
+
   
   return (
     

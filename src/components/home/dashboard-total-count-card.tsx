@@ -46,7 +46,7 @@ const DashboardTotalCountCard = ({resource, isLoading,totalCount}:Props) => {
       }
     }
   };
-   console.log("config",config)
+   //console.log("config",config)
   
    return (
     <Card
