@@ -8,7 +8,7 @@ import "@refinedev/antd/dist/reset.css";
 
 
 import {dataProvider,liveProvider,authProvider} from "./Providers";
-import {Home,Login,Register,ForgotPassword,CompanyList} from './pages'
+import {Home,Login,Register,ForgotPassword,CompanyList, Create,EditPage} from './pages'
 
 
 import routerBindings, {
@@ -38,6 +38,7 @@ import Layout from "./components/layout"
 
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { resources } from "./config/resources";
+
 // import { liveProvider } from "@refinedev/nestjs-query";
 //npm install --save-dev @graphql-codegen/typescript @graphql-codegen/typescript-operations @graphql-codegen/import-types-preset prettier vite-tsconfig-path
 
@@ -105,7 +106,11 @@ function App() {
                   </Authenticated>
                 } >
                    <Route index element={<Home />} />
-                   <Route path="/companies" element={<CompanyList/>} />
+                   <Route path="/companies" >
+                      <Route index element ={<CompanyList />}/>
+                      <Route path= 'new' element={<Create/>} />
+                      <Route path= 'edit/:id' element={<EditPage/>} />
+                    </Route>
                   </Route>
               </Routes>
 

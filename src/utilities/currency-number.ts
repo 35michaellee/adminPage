@@ -16,3 +16,4 @@ export const currencyNumber = (
 
   return value.toString();
 };
+
